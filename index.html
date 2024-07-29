@@ -9,18 +9,19 @@
 </head>
 <body>
     <h1>Library</h1>
-    <form>
-        <label for="fname">Book name:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br>
-        <label for="lname">Author:</label><br>
-        <input type="text" id="lname" name="lname" value="Doe"><br>
-        <label for="fname">Pages:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br><br>
+    <form class="form" onsubmit="return false">
+        <label for="bookName">Book name:</label><br>
+        <input type="text" id="bookName" name="bookName" value="John"><br>
+        <label for="authorName">Author:</label><br>
+        <input type="text" id="authorName" name="authorName" value="Doe"><br>
+        <label for="pagesCount">Pages:</label><br>
+        <input type="text" id="pagesCount" name="pagesCount" value=""><br><br>
         <label class="switch">Read
             <input type="checkbox">
             <span class="slider"></span>
           </label><br><br>
-        <input type="submit" value="Submit">
+        <input class="form-submit" type="submit" value="Submit">
       </form> 
+    <h1 class="booklist" id="test">Books: </h1>
 </body>
 </html>
