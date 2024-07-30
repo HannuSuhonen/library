@@ -32,12 +32,11 @@ const booksContainer = document.querySelector(".booksContainer");
 
 function updateBookList(book){
     const bookContainer = document.createElement("div");
-    const ul = document.createElement("ul");
-    bookContainer.appendChild(ul);
+    bookContainer.classList.add("bookContainer");
         Object.keys(book).forEach((key) => {
-            const li = document.createElement("li");
-            li.textContent = book[key];
-            ul.appendChild(li);
+            const p = document.createElement("p");
+            p.textContent = `${key} ${book[key]}`;
+            bookContainer.appendChild(p);
         })
     booksContainer.appendChild(bookContainer);
 }

@@ -5,3 +5,7 @@ h1{
 .booksContainer{
     display: grid;
 }
+
+.bookContainer{
+    border: 1px solid black;
+}
