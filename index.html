@@ -11,7 +11,7 @@
     <h1>Library</h1>
     <form class="form" onsubmit="return false">
         <label for="bookName">Book name:</label><br>
-        <input type="text" id="bookName" name="bookName" value="John"><br>
+        <input type="text" id="bookName" name="bookName" value="John" required><br>
         <label for="authorName">Author:</label><br>
         <input type="text" id="authorName" name="authorName" value="Doe"><br>
         <label for="pagesCount">Pages:</label><br>
@@ -21,7 +21,9 @@
             <span class="slider"></span>
           </label><br><br>
         <input class="form-submit" type="submit" value="Submit">
-      </form> 
-    <h1 class="booklist" id="test">Books: </h1>
+      </form>
+      <div class="booksContainer">
+
+      </div>
 </body>
 </html>

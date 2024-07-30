@@ -28,7 +28,16 @@ function addBookToLibrary(formData) {
     updateBookList(newBook);
 }
 
-const bookList = document.querySelector(".booklist");
+const booksContainer = document.querySelector(".booksContainer");
+
 function updateBookList(book){
-    bookList.textContent += book;
+    const bookContainer = document.createElement("div");
+    const ul = document.createElement("ul");
+    bookContainer.appendChild(ul);
+        Object.keys(book).forEach((key) => {
+            const li = document.createElement("li");
+            li.textContent = book[key];
+            ul.appendChild(li);
+        })
+    booksContainer.appendChild(bookContainer);
 }
