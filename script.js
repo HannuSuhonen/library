@@ -31,12 +31,29 @@ function addBookToLibrary(formData) {
 const booksContainer = document.querySelector(".booksContainer");
 
 function addBookCard(book){
+    const bookCard = createBookCardElement(book);
+    booksContainer.prepend(bookCard); //Add child(book card) to books container
+}
+
+function createBookCardElement(book){
     const bookCard = document.createElement("div");
     bookCard.classList.add("bookCard");
-        Object.keys(book).forEach((key) => {
-            const p = document.createElement("p");
-            p.textContent = `${key} : ${book[key]}`;
-            bookCard.appendChild(p);
-        })
-    booksContainer.prepend(bookCard); //Add child(book card) to books container
+
+    Object.keys(book).forEach((key) => {
+        const p = document.createElement("p");
+        p.textContent = `${key} : ${book[key]}`;
+        bookCard.appendChild(p);
+    })
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener(("click"),() => deleteButtonClick(book,bookCard))
+
+    bookCard.appendChild(deleteButton);
+    return bookCard;
+}
+
+function deleteButtonClick(book, bookCard) {
+    myLibrary.splice(myLibrary.indexOf(book), 1);
+    bookCard.remove();
 }
