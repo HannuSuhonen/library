@@ -5,11 +5,14 @@ h1{
 .booksContainer{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 10px;
+    gap: 20px;
 }
 
 .bookCard{
     border: 1px solid black;
-    padding: 10px;
-    max-width: 500px;
+    width: clamp(250px, 100%, 900px);
+}
+
+.bookCard p{
+    margin: 1rem;
 }
