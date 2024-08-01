@@ -25,18 +25,18 @@ function addBookToLibrary(formData) {
     formData.get(KEYREAD));
 
     myLibrary.push(newBook);
-    updateBookList(newBook);
+    addBookCard(newBook);
 }
 
 const booksContainer = document.querySelector(".booksContainer");
 
-function updateBookList(book){
-    const bookContainer = document.createElement("div");
-    bookContainer.classList.add("bookContainer");
+function addBookCard(book){
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("bookCard");
         Object.keys(book).forEach((key) => {
             const p = document.createElement("p");
-            p.textContent = `${key} ${book[key]}`;
-            bookContainer.appendChild(p);
+            p.textContent = `${key} : ${book[key]}`;
+            bookCard.appendChild(p);
         })
-    booksContainer.appendChild(bookContainer);
+    booksContainer.appendChild(bookCard);
 }
