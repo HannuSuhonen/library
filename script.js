@@ -38,5 +38,5 @@ function addBookCard(book){
             p.textContent = `${key} : ${book[key]}`;
             bookCard.appendChild(p);
         })
-    booksContainer.appendChild(bookCard);
+    booksContainer.prepend(bookCard); //Add child(book card) to books container
 }
