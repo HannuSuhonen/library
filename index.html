@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>Library</h1>
-    <form class="form" onsubmit="return false">
+    <button class="openFormButton">Open form</button>
+    <div class="modal">
+      <form class="form" onsubmit="return false">
         <label for="bookName">Book name:</label><br>
         <input type="text" id="bookName" name="bookName" value="John" required><br>
         <label for="authorName">Author:</label><br>
@@ -22,8 +24,9 @@
           </label><br><br>
         <input class="form-submit" type="submit" value="Submit">
       </form>
-      <div class="booksContainer">
+    </div>
+    <div class="booksContainer">
 
-      </div>
+    </div>
 </body>
 </html>

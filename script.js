@@ -31,11 +31,11 @@ function addBookToLibrary(formData) {
 const booksContainer = document.querySelector(".booksContainer");
 
 function addBookCard(book){
-    const bookCard = createBookCardElement(book);
+    const bookCard = createBookCardElements(book);
     booksContainer.prepend(bookCard); //Add child(book card) to books container
 }
 
-function createBookCardElement(book){
+function createBookCardElements(book){
     const bookCard = document.createElement("div");
     bookCard.classList.add("bookCard");
 
@@ -48,8 +48,8 @@ function createBookCardElement(book){
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener(("click"),() => deleteButtonClick(book,bookCard))
-
     bookCard.appendChild(deleteButton);
+
     return bookCard;
 }
 
@@ -57,3 +57,14 @@ function deleteButtonClick(book, bookCard) {
     myLibrary.splice(myLibrary.indexOf(book), 1);
     bookCard.remove();
 }
+
+const modal = document.querySelector(".modal");
+const formOpenButton = document.querySelector(".openFormButton");
+formOpenButton.addEventListener(("click"), () => {
+    modal.style.display = "block";
+})
+
+const formSubmitButton = document.querySelector(".form-submit");
+formSubmitButton.addEventListener(("click"), () => {
+    modal.style.display = "none";
+})
