@@ -72,8 +72,21 @@ formOpenButton.addEventListener(("click"), () => {
 
 const formSubmitButton = document.querySelector(".form-submit");
 formSubmitButton.addEventListener(("click"), () => {
-    if(form.checkValidity()) dialog.close();
+    closeForm(true);
 })
+
+const closeFormButton = document.querySelector(".closeFormButton");
+closeFormButton.addEventListener(("click"), () => {
+    closeForm();
+})
+
+function closeForm(checkValidity = false){
+    if(checkValidity){
+        if(form.checkValidity()) dialog.close();
+    }else{
+        dialog.close();
+    }
+}
 
 function deleteButtonClick(book) {
     myLibrary.splice(myLibrary.indexOf(book), 1);
