@@ -10,21 +10,23 @@
 <body>
     <h1>Library</h1>
     <button class="openFormButton">Open form</button>
-    <div class="modal">
-      <form class="form" onsubmit="return false">
+    <dialog>
+      <form class="form" id="form">
         <label for="bookName">Book name:</label><br>
-        <input type="text" id="bookName" name="bookName" value="John" required><br>
+        <input type="text" id="bookName" name="bookName" placeholder="King Kong" autofocus required><br>
         <label for="authorName">Author:</label><br>
-        <input type="text" id="authorName" name="authorName" value="Doe"><br>
+        <input type="text" id="authorName" name="authorName" placeholder="John"><br>
         <label for="pagesCount">Pages:</label><br>
-        <input type="text" id="pagesCount" name="pagesCount" value=""><br><br>
-        <label class="switch">Read
-            <input type="checkbox" name="read">
-            <span class="slider"></span>
-          </label><br><br>
+        <input type="text" id="pagesCount" name="pagesCount" placeholder="600"><br><br>
+        <input type="radio" id="unread" name="read" value="Unread" required>
+        <label for="unread">Unread</label><br>
+        <input type="radio" id="inprogress" name="read" value="In-progress">
+        <label for="inprogress">In-progress</label><br>  
+        <input type="radio" id="complete" name="read" value="Complete">
+        <label for="complete">Complete</label><br><br>
         <input class="form-submit" type="submit" value="Submit">
       </form>
-    </div>
+    </dialog>
     <div class="booksContainer">
 
     </div>

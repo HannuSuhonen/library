@@ -12,9 +12,11 @@ function Book(name, author, pages, read) {
 }
 
 const form = document.querySelector(".form");
-form.addEventListener(("submit"), () => {
+form.addEventListener(("submit"), (event) => {
+    event.preventDefault();
     const formData = new FormData(form);
     addBookToLibrary(formData);
+    form.reset();
 })
 
 function addBookToLibrary(formData) {
@@ -25,46 +27,69 @@ function addBookToLibrary(formData) {
     formData.get(KEYREAD));
 
     myLibrary.push(newBook);
-    addBookCard(newBook);
+    createBookCardElements();
 }
 
 const booksContainer = document.querySelector(".booksContainer");
 
-function addBookCard(book){
-    const bookCard = createBookCardElements(book);
-    booksContainer.prepend(bookCard); //Add child(book card) to books container
-}
+function createBookCardElements(){
+    clearBookContainer();
+    myLibrary.forEach((book) => {
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("bookCard");
 
-function createBookCardElements(book){
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("bookCard");
+        Object.keys(book).forEach((key) => {
+            const p = document.createElement("p");
+            console.log(book[key]);
+            p.textContent = `${key} : ${book[key]}`;
+            bookCard.appendChild(p);
+        })
+        const statusButton = document.createElement("button");
+        statusButton.textContent = "status";
+        statusButton.onclick = () => book.updateStatus();
+        bookCard.appendChild(statusButton);
 
-    Object.keys(book).forEach((key) => {
-        const p = document.createElement("p");
-        p.textContent = `${key} : ${book[key]}`;
-        bookCard.appendChild(p);
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener(("click"),() => deleteButtonClick(book))
+        bookCard.appendChild(deleteButton);
+
+        booksContainer.prepend(bookCard);
     })
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.addEventListener(("click"),() => deleteButtonClick(book,bookCard))
-    bookCard.appendChild(deleteButton);
-
-    return bookCard;
 }
 
-function deleteButtonClick(book, bookCard) {
-    myLibrary.splice(myLibrary.indexOf(book), 1);
-    bookCard.remove();
-}
+function clearBookContainer() { 
+    while(booksContainer.firstChild){
+        booksContainer.removeChild(booksContainer.firstChild);
+    }
+} 
 
-const modal = document.querySelector(".modal");
+const dialog = document.querySelector("dialog");
 const formOpenButton = document.querySelector(".openFormButton");
 formOpenButton.addEventListener(("click"), () => {
-    modal.style.display = "block";
+    dialog.showModal();
 })
 
 const formSubmitButton = document.querySelector(".form-submit");
 formSubmitButton.addEventListener(("click"), () => {
-    modal.style.display = "none";
+    if(form.checkValidity()) dialog.close();
 })
+
+function deleteButtonClick(book) {
+    myLibrary.splice(myLibrary.indexOf(book), 1);
+    createBookCardElements();
+}
+Book.prototype.updateStatus = function(){
+    switch (myLibrary[myLibrary.indexOf(this)].read){
+        case "Unread": 
+            this.read = "In-progress";
+            break;
+        case "In-progress":
+            this.read = "Complete";
+            break;
+        case "Complete":
+            this.read = "Unread";
+            break;
+    }
+    createBookCardElements();
+}
